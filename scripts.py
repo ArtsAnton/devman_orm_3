@@ -6,10 +6,10 @@ from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from datacenter.models import Mark, Commendation, Chastisement, Lesson, Schoolkid
 
 
-def fix_marks(schoolkid):
+def fix_marks(schoolkid, new_mark=5):
     neg_marks = Mark.objects.filter(schoolkid=schoolkid.id, points__lte=3)
     for mark in neg_marks:
-        mark.points = 5
+        mark.points = new_mark
         mark.save()
 
 
